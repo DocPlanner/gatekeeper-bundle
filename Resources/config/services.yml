@@ -1,5 +1,5 @@
 parameters:
-    gatekeeper.class: GateKeeper\Keeper
+    gatekeeper.class: GateKeeper\GateKeeper
     gatekeeper.access.allow.class: GateKeeperBundle\Access\Allow
     gatekeeper.access.deny.class: GateKeeperBundle\Access\Deny
 
