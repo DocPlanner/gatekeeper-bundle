@@ -28,6 +28,8 @@ class GateKeeperCompilerPass implements CompilerPassInterface
 		}
 
 		$definition = $container->getDefinition('gatekeeper');
+		$definition->addArgument(new Reference($container->getParameter('gatekeeper.repository.service')));
+
 		$taggedServices = $container->findTaggedServiceIds('gatekeeper.access');
 
 		foreach ($taggedServices as $id => $attributes)

@@ -6,13 +6,9 @@ parameters:
 services:
     gatekeeper:
         class: %gatekeeper.class%
-        arguments: [@gatekeeper.repository]
 
     gatekeeper.repository.dummy:
         class: GateKeeper\Repository\DummyRepository
-
-    gatekeeper.repository:
-        alias: %gatekeeper.repository.service%
 
     gatekeeper.access.allow:
         public: false
