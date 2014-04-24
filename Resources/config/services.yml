@@ -1,0 +1,27 @@
+parameters:
+    gatekeeper.class: GateKeeper\Keeper
+    gatekeeper.access.allow.class: GateKeeperBundle\Access\Allow
+    gatekeeper.access.deny.class: GateKeeperBundle\Access\Deny
+
+services:
+    gatekeeper:
+        class: %gatekeeper.class%
+        arguments: [@gatekeeper.repository]
+
+    gatekeeper.repository.dummy:
+        class: GateKeeper\Repository\DummyRepository
+
+    gatekeeper.repository:
+        alias: %gatekeeper.repository.service%
+
+    gatekeeper.access.allow:
+        public: false
+        class: %gatekeeper.access.allow.class%
+        tags:
+          - { name: gatekeeper.access }
+
+    gatekeeper.access.deny:
+        public: false
+        class: %gatekeeper.access.deny.class%
+        tags:
+          - { name: gatekeeper.access }

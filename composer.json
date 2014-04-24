@@ -1,0 +1,26 @@
+{
+	"name": "docplanner/gatekeeper-bundle",
+	"description": "GateKeeper Bundle",
+	"minimum-stability": "stable",
+	"license": "proprietary",
+	"authors": [
+		{
+			"name": "Łukasz Barulski",
+			"email": "tracerout@yahoo.com"
+		},
+		{
+			"name": "Bartłomiej Kuleszewicz",
+			"email": "bartlomiej.kuleszewicz@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3",
+		"symfony/symfony": ">=2.3",
+		"docplanner/gatekeeper": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"GateKeeperBundle\\": ""
+		}
+	}
+}
