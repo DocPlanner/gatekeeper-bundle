@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
 		/** @noinspection PhpUndefinedMethodInspection */
-		$treeBuilder->root('gatekeeper')
+		$treeBuilder->root('gate_keeper')
 			->children()
 				->scalarNode('repository_service')
 					->defaultValue('gatekeeper.repository.dummy')
