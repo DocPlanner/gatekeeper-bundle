@@ -23,7 +23,6 @@ class Configuration implements ConfigurationInterface
 			->children()
 				->scalarNode('repository_service')
 					->defaultValue('gatekeeper.repository.dummy')
-					->isRequired()
 				->end()
 			->end();
 
