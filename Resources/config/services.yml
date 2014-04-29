@@ -10,6 +10,12 @@ services:
     gatekeeper.repository.dummy:
         class: GateKeeper\Repository\DummyRepository
 
+    gatekeeper.twig:
+        class: GateKeeperBundle\Twig\TwigExtension
+        arguments: [@gatekeeper]
+        tags:
+          - { name: twig.extension }
+
     gatekeeper.access.allow:
         public: false
         class: %gatekeeper.access.allow.class%
