@@ -24,6 +24,9 @@ class Configuration implements ConfigurationInterface
 				->scalarNode('repository_service')
 					->defaultValue('gatekeeper.repository.dummy')
 				->end()
+			->scalarNode('provider_service')
+					->defaultValue('gatekeeper.gates_provider.dummy')
+				->end()
 			->end();
 
         return $treeBuilder;

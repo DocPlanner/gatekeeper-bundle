@@ -48,12 +48,7 @@ class GateKeeper implements VoterInterface
 	 */
 	public function supportsAttribute($attribute)
 	{
-		if (null === $this->gates)
-		{
-			$this->gates = $this->gatesProvider->getGates();
-		}
-
-		return in_array($attribute, $this->gates);
+		return strpos($attribute, 'GATE_') === 0;
 	}
 
 	/**
@@ -92,7 +87,7 @@ class GateKeeper implements VoterInterface
 		}
 
 		$user = $token->getUser() instanceof ObjectInterface ? $token->getUser() : null;
-		$attributes = is_array($object) ? $object : [];
+		$object = is_array($object) ? $object : [];
 
 		if ($this->gateKeeper->hasAccess($attributes[0], $user, $object))
 		{

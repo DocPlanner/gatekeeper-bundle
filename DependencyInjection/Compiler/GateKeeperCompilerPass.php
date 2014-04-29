@@ -27,6 +27,9 @@ class GateKeeperCompilerPass implements CompilerPassInterface
 			return;
 		}
 
+		$definition = $container->getDefinition('gatekeeper.voter');
+		$definition->addArgument(new Reference($container->getParameter('gatekeeper.provider.service')));
+
 		$definition = $container->getDefinition('gatekeeper');
 		$definition->addArgument(new Reference($container->getParameter('gatekeeper.repository.service')));
 

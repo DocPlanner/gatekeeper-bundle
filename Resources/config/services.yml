@@ -15,7 +15,7 @@ services:
 
     gatekeeper.voter:
         class: GateKeeperBundle\Voter\GateKeeper
-        arguments: [@gatekeeper, @gatekeeper.gates_provider.dummy]
+        arguments: [@gatekeeper]
         tags:
           - { name: security.voter }
 
