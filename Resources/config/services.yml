@@ -10,11 +10,14 @@ services:
     gatekeeper.repository.dummy:
         class: GateKeeper\Repository\DummyRepository
 
-    gatekeeper.twig:
-        class: GateKeeperBundle\Twig\TwigExtension
-        arguments: [@gatekeeper]
+    gatekeeper.gates_provider.dummy:
+        class: GateKeeper\Provider\DummyGatesProvider
+
+    gatekeeper.voter:
+        class: GateKeeperBundle\Voter\GateKeeper
+        arguments: [@gatekeeper, @gatekeeper.gates_provider.dummy]
         tags:
-          - { name: twig.extension }
+          - { name: security.voter }
 
     gatekeeper.access.allow:
         public: false
