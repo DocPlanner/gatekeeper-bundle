@@ -76,14 +76,14 @@ class GateKeeper implements VoterInterface
 	 */
 	public function vote(TokenInterface $token, $object, array $attributes)
 	{
-		if (1 !== count($attributes))
-		{
-			throw new \InvalidArgumentException('Only one attribute is allowed');
-		}
-
 		if (false === $this->supportsAttribute($attributes[0]))
 		{
 			return self::ACCESS_ABSTAIN;
+		}
+
+		if (1 !== count($attributes))
+		{
+			throw new \InvalidArgumentException('Only one attribute is allowed');
 		}
 
 		$user = $token->getUser() instanceof ObjectInterface ? $token->getUser() : null;
