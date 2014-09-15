@@ -1,7 +1,9 @@
 parameters:
     gatekeeper.class: GateKeeper\GateKeeper
+    gatekeeper.configuration.class: GateKeeper\Service\GateKeeperConfiguration
     gatekeeper.access.allow.class: GateKeeperBundle\Access\Allow
     gatekeeper.access.deny.class: GateKeeperBundle\Access\Deny
+    gatekeeper.access.percentage_bucket.class: GateKeeperBundle\Access\PercentageBucket
 
 services:
     gatekeeper:
@@ -13,9 +15,14 @@ services:
     gatekeeper.gates_provider.dummy:
         class: GateKeeper\Provider\DummyGatesProvider
 
+    gatekeeper.configuration:
+        class: %gatekeeper.configuration.class%
+        arguments: [null]
+        public: false
+
     gatekeeper.voter:
         class: GateKeeperBundle\Voter\GateKeeper
-        arguments: [@gatekeeper]
+        arguments: [@gatekeeper, @gatekeeper.configuration]
         tags:
           - { name: security.voter }
 
@@ -28,5 +35,12 @@ services:
     gatekeeper.access.deny:
         public: false
         class: %gatekeeper.access.deny.class%
+        tags:
+          - { name: gatekeeper.access }
+
+    gatekeeper.access.percentage_bucket:
+        public: false
+        class: %gatekeeper.access.percentage_bucket.class%
+        arguments: [@session]
         tags:
           - { name: gatekeeper.access }

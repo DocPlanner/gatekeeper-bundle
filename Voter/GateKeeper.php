@@ -8,35 +8,29 @@ namespace GateKeeperBundle\Voter;
 
 use GateKeeper\GateKeeper as Keeper;
 use GateKeeper\Object\ObjectInterface;
-use GateKeeper\Provider\GatesProviderInterface;
+use GateKeeperBundle\Service\GateKeeperConfiguration;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 class GateKeeper implements VoterInterface
 {
 	/**
-	 * @var array|null
-	 */
-	private $gates;
-
-	/**
-	 * @var GatesProviderInterface
-	 */
-	private $gatesProvider;
-
-	/**
 	 * @var \GateKeeper\GateKeeper
 	 */
 	private $gateKeeper;
+	/**
+	 * @var GateKeeperConfiguration
+	 */
+	private $configuration;
 
 	/**
-	 * @param Keeper                 $gateKeeper
-	 * @param GatesProviderInterface $gatesProvider
+	 * @param Keeper                  $gateKeeper
+	 * @param GateKeeperConfiguration $configuration
 	 */
-	public function __construct(Keeper $gateKeeper, GatesProviderInterface $gatesProvider)
+	public function __construct(Keeper $gateKeeper, GateKeeperConfiguration $configuration)
 	{
-		$this->gatesProvider = $gatesProvider;
 		$this->gateKeeper = $gateKeeper;
+		$this->configuration = $configuration;
 	}
 
 	/**
@@ -76,7 +70,8 @@ class GateKeeper implements VoterInterface
 	 */
 	public function vote(TokenInterface $token, $object, array $attributes)
 	{
-		if (false === $this->supportsAttribute($attributes[0]))
+		$gateName = $attributes[0];
+		if (false === $this->supportsAttribute($gateName))
 		{
 			return self::ACCESS_ABSTAIN;
 		}
@@ -89,7 +84,7 @@ class GateKeeper implements VoterInterface
 		$user = $token->getUser() instanceof ObjectInterface ? $token->getUser() : null;
 		$object = is_array($object) ? $object : [];
 
-		if ($this->gateKeeper->hasAccess($attributes[0], $user, $object))
+		if ($this->gateKeeper->hasAccess($gateName, $user, $object + $this->configuration->getAttributes($gateName)))
 		{
 			return self::ACCESS_GRANTED;
 		}

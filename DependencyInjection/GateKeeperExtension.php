@@ -24,6 +24,7 @@ class GateKeeperExtension extends Extension
 
 		$container->setParameter('gatekeeper.repository.service', $config['repository_service']);
 		$container->setParameter('gatekeeper.provider.service', $config['provider_service']);
+		$container->getDefinition('gatekeeper.configuration')->replaceArgument(0, $config['gates']);
 
 		$loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 		$loader->load('services.yml');
