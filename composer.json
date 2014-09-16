@@ -18,6 +18,9 @@
 		"symfony/symfony": ">=2.3",
 		"docplanner/gatekeeper": "dev-master"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "~4.0"
+	},
 	"autoload": {
 		"psr-4": {
 			"GateKeeperBundle\\": ""
