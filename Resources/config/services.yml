@@ -17,7 +17,7 @@ services:
 
     gatekeeper.configuration:
         class: %gatekeeper.configuration.class%
-        arguments: [null]
+        arguments: [%gatekeeper.configuration.gates%]
         public: false
 
     gatekeeper.voter:

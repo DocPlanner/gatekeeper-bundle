@@ -14,7 +14,7 @@ class PercentageBucket extends AbstractAccess
 	 */
 	private $session;
 
-	function __construct(Session $session)
+	public function __construct(Session $session)
 	{
 		$this->session = $session;
 	}

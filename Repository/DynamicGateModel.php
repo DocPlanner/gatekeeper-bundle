@@ -6,10 +6,20 @@ use GateKeeper\Model\ModelInterface;
 
 class DynamicGateModel implements ModelInterface
 {
+	/**
+	 * @var string
+	 */
 	private $access;
+	/**
+	 * @var string
+	 */
 	private $gate;
 
-	function __construct($gate, $access)
+	/**
+	 * @param string $gate
+	 * @param string $access
+	 */
+	public function __construct($gate, $access)
 	{
 		$this->gate = $gate;
 		$this->access = $access;
