@@ -7,7 +7,7 @@
 namespace GateKeeperBundle\Voter;
 
 use GateKeeper\GateKeeper as Keeper;
-use GateKeeper\Object\ObjectInterface;
+use GateKeeper\Item\ItemInterface;
 use GateKeeper\Provider\GatesProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
@@ -86,7 +86,7 @@ class GateKeeper implements VoterInterface
 			throw new \InvalidArgumentException('Only one attribute is allowed');
 		}
 
-		$user = $token->getUser() instanceof ObjectInterface ? $token->getUser() : null;
+		$user = $token->getUser() instanceof ItemInterface ? $token->getUser() : null;
 		$object = is_array($object) ? $object : [];
 
 		if ($this->gateKeeper->hasAccess($attributes[0], $user, $object))
