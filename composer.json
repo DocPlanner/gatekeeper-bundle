@@ -16,7 +16,7 @@
 	"require": {
 		"php": ">=5.3.3",
 		"symfony/symfony": "~2.3|~3.0",
-		"docplanner/gatekeeper": "1.*"
+		"docplanner/gatekeeper": "2.*"
 	},
 	"autoload": {
 		"psr-4": {
