@@ -12,19 +12,32 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    /** @var string */
+    protected $alias;
+
+    public function __construct($alias = 'gate_keeper')
+    {
+        $this->alias = $alias;
+    }
+
     /**
      * {@inheritDoc}
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-		/** @noinspection PhpUndefinedMethodInspection */
-		$treeBuilder->root('gate_keeper')
+        $treeBuilder = new TreeBuilder($this->alias);
+
+        $rootNode = method_exists($treeBuilder, 'getRootNode') ?
+            $treeBuilder->getRootNode()
+            :
+            $treeBuilder->root($this->alias); // BC layer for symfony/config 4.1 and older
+
+        $rootNode
 			->children()
 				->scalarNode('repository_service')
 					->defaultValue('gatekeeper.repository.dummy')
 				->end()
-			->scalarNode('provider_service')
+			    ->scalarNode('provider_service')
 					->defaultValue('gatekeeper.gates_provider.dummy')
 				->end()
 			->end();
