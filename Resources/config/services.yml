@@ -5,7 +5,7 @@ parameters:
 
 services:
     gatekeeper:
-        class: %gatekeeper.class%
+        class: '%gatekeeper.class%'
 
     gatekeeper.repository.dummy:
         class: GateKeeper\Repository\DummyRepository
@@ -21,12 +21,12 @@ services:
 
     gatekeeper.access.allow:
         public: false
-        class: %gatekeeper.access.allow.class%
+        class: '%gatekeeper.access.allow.class%'
         tags:
           - { name: gatekeeper.access }
 
     gatekeeper.access.deny:
         public: false
-        class: %gatekeeper.access.deny.class%
+        class: '%gatekeeper.access.deny.class%'
         tags:
           - { name: gatekeeper.access }

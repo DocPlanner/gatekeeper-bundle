@@ -8,22 +8,11 @@ namespace GateKeeperBundle\Voter;
 
 use GateKeeper\GateKeeper as Keeper;
 use GateKeeper\Item\ItemInterface;
-use GateKeeper\Provider\GatesProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 class GateKeeper implements VoterInterface
 {
-	/**
-	 * @var array|null
-	 */
-	private $gates;
-
-	/**
-	 * @var GatesProviderInterface
-	 */
-	private $gatesProvider;
-
 	/**
 	 * @var \GateKeeper\GateKeeper
 	 */
@@ -31,11 +20,9 @@ class GateKeeper implements VoterInterface
 
 	/**
 	 * @param Keeper                 $gateKeeper
-	 * @param GatesProviderInterface $gatesProvider
 	 */
-	public function __construct(Keeper $gateKeeper, GatesProviderInterface $gatesProvider)
+	public function __construct(Keeper $gateKeeper)
 	{
-		$this->gatesProvider = $gatesProvider;
 		$this->gateKeeper = $gateKeeper;
 	}
 

@@ -11,15 +11,19 @@
 		{
 			"name": "Bartłomiej Kuleszewicz",
 			"email": "bartlomiej.kuleszewicz@gmail.com"
+		},
+		{
+			"name": "Tomasz Wójcik",
+			"email": "tomasz.prgtw.wojcik@gmail.com"
 		}
 	],
 	"require": {
-		"php": ">=5.4",
+		"php": "^5.4 || ^7.4 || ^8.0",
 		"docplanner/gatekeeper": "2.*",
-		"symfony/dependency-injection": "^2.8|^3.0",
-		"symfony/http-kernel": "^2.8|^3.0",
-		"symfony/config": "^2.8|^3.0",
-		"symfony/security": "^2.8|^3.0"
+		"symfony/dependency-injection": "^2.8 || ^3.0 || ^4.0",
+		"symfony/http-kernel": "^2.8 || ^3.0 || ^4.0",
+		"symfony/config": "^2.8 || ^3.0 || ^4.0",
+		"symfony/security": "^2.8 || ^3.0 || ^4.0"
 	},
 	"autoload": {
 		"psr-4": {
