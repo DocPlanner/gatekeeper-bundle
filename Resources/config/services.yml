@@ -6,6 +6,7 @@ parameters:
 services:
     gatekeeper:
         class: '%gatekeeper.class%'
+        public: true
 
     gatekeeper.repository.dummy:
         class: GateKeeper\Repository\DummyRepository
