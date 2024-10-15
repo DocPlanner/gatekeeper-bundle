@@ -4,6 +4,9 @@ parameters:
     gatekeeper.access.deny.class: GateKeeperBundle\Access\Deny
 
 services:
+    GateKeeper\GateKeeper:
+        alias: 'gatekeeper'
+
     gatekeeper:
         class: '%gatekeeper.class%'
         public: true
