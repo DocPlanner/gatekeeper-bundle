@@ -3,10 +3,6 @@ services:
         class: GateKeeper\GateKeeper
         public: true
 
-    gatekeeper:
-        alias: GateKeeper\GateKeeper
-        public: true
-
     gatekeeper.repository.dummy:
         class: GateKeeper\Repository\DummyRepository
 
