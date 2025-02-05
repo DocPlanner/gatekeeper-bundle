@@ -1,14 +1,11 @@
-parameters:
-    gatekeeper.class: GateKeeper\GateKeeper
-    gatekeeper.access.allow.class: GateKeeperBundle\Access\Allow
-    gatekeeper.access.deny.class: GateKeeperBundle\Access\Deny
-
 services:
     GateKeeper\GateKeeper:
-        alias: 'gatekeeper'
+        class: GateKeeper\GateKeeper
+        public: true
 
     gatekeeper:
-        class: '%gatekeeper.class%'
+        alias: GateKeeper\GateKeeper
+        deprecated: true
         public: true
 
     gatekeeper.repository.dummy:
@@ -19,18 +16,18 @@ services:
 
     gatekeeper.voter:
         class: GateKeeperBundle\Voter\GateKeeper
-        arguments: ["@gatekeeper"]
+        arguments: ['@GateKeeper\GateKeeper']
         tags:
           - { name: security.voter }
 
     gatekeeper.access.allow:
         public: false
-        class: '%gatekeeper.access.allow.class%'
+        class: GateKeeperBundle\Access\Allow
         tags:
           - { name: gatekeeper.access }
 
     gatekeeper.access.deny:
         public: false
-        class: '%gatekeeper.access.deny.class%'
+        class: GateKeeperBundle\Access\Deny
         tags:
           - { name: gatekeeper.access }
