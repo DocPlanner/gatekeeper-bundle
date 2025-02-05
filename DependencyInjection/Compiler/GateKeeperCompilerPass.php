@@ -6,7 +6,7 @@
 
 namespace GateKeeperBundle\DependencyInjection\Compiler;
 
-
+use GateKeeper\GateKeeper;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -22,7 +22,7 @@ class GateKeeperCompilerPass implements CompilerPassInterface
 	 */
 	public function process(ContainerBuilder $container)
 	{
-		if (!$container->hasDefinition('gatekeeper'))
+		if (!$container->hasDefinition(GateKeeper::class))
 		{
 			return;
 		}
@@ -30,7 +30,7 @@ class GateKeeperCompilerPass implements CompilerPassInterface
 		$definition = $container->getDefinition('gatekeeper.voter');
 		$definition->addArgument(new Reference($container->getParameter('gatekeeper.provider.service')));
 
-		$definition = $container->getDefinition('gatekeeper');
+		$definition = $container->getDefinition(GateKeeper::class);
 		$definition->addArgument(new Reference($container->getParameter('gatekeeper.repository.service')));
 
 		$taggedServices = $container->findTaggedServiceIds('gatekeeper.access');
