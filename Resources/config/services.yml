@@ -5,6 +5,7 @@ services:
 
     gatekeeper:
         alias: GateKeeper\GateKeeper
+        deprecated: true
         public: true
 
     gatekeeper.repository.dummy:
